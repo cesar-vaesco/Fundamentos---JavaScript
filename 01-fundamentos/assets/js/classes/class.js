@@ -2,6 +2,17 @@
 
 class Persona {
 
+    static _conteo = 0;
+
+    static get getConteo(){
+        return Persona._conteo + ' instancia(s)';
+    }
+
+    static mensaje(){
+        console.log( this.nombre);
+        console.log('Hola a todos, soy un método estático....')
+    }
+
     nombre = '';
     codigo = '';
     frase = '';
@@ -11,7 +22,10 @@ class Persona {
         this.nombre = nombre;
         this.codigo = codigo;
         this.frase = frase;
+        
+        Persona._conteo++;
     }
+
     // Set - establece un valor
     set setComidaFavorita(comida) {
         this.comida = comida.toUpperCase();
@@ -36,16 +50,28 @@ class Persona {
 }
 
 const spiderman = new Persona('Peter Parker', 'Spiderman', 'Soy tu amigable Vecino Spider Man ');
-console.log(spiderman);
+// console.log(spiderman);
 const ironman = new Persona('Toni Stark', 'Iron', 'Yo soy Ironman ');
-console.log(ironman);
+// console.log(ironman);
+
 
 // Un método para ser invocado se requiere usar los parentesis, 
 // de no hacerlo, lo que se estaciendo es solamente usar su referencia 
 
-spiderman.miFrase();
+// spiderman.miFrase();
 
-//
-spiderman.setComidaFavorita = 'El pay de cereza de la tía May';
+// //
+// spiderman.setComidaFavorita = 'El pay de cereza de la tía May';
 
-console.log(`La comida favorita de ${spiderman.nombre} es '${spiderman.getComidaFavorita}'`);
+// console.log(`La comida favorita de ${spiderman.nombre} es '${spiderman.getComidaFavorita}'`);
+// Persona._conteo = 2;
+
+console.log(`Conteo estático: ${Persona._conteo}`);
+console.log(Persona.getConteo);
+Persona.mensaje();
+
+// Propiedad estática de la clase definida fuera de la clase
+Persona.propiedadExterna = 'Hola Mundo';
+
+console.log( Persona.propiedadExterna );
+console.log( Persona );
